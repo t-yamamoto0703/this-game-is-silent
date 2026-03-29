@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title translate="no">This game is silent.</title>
+    <link href="silent.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Screen Reader Message -->
+    <p class="sr-only">This game is not compatible with screen readers.</p>
+    <!-- game Board -->
+    <div id="game-board" aria-hidden>
+      <!-- Total Result -->
+      <div id="total-result"></div>
+      <!-- Damage Flash Screen -->
+      <div id="damage-screen"></div>
+      <!-- UI Container -->
+      <div class="ui-container">
+        <!-- Status Resources -->
+        <div id="status-resources">
+          <!-- UI Controls [Structural compromise: Layout placement] -->
+          <div class="ui-controls">
+            <!-- Other Games -->
+            <div class="other-games">
+              <button id="other-games-button">
+                Other<br />
+                Games
+              </button>
+            </div>
+            <!-- Month Adjust Button Container -->
+            <div id="month-adjust-button-container">
+              <div class="month-adjust-button-label">Month<br />Adjust</div>
+              <button class="month-adjust-button">+3</button>
+              <button class="month-adjust-button">+2</button>
+              <button class="month-adjust-button">+1</button>
+              <button class="month-adjust-button" id="default-adjust-position">0</button>
+              <button class="month-adjust-button">-1</button>
+              <button class="month-adjust-button">-2</button>
+              <button class="month-adjust-button">-3</button>
+            </div>
+          </div>
+          <!-- Status Indicator -->
+          <div class="status-indicator">
+            <img id="remaining-questions-Element" src="img/remaining-questions.png" alt="" />
+            <div class="status-indicator-value" id="remaining-questions-value">366</div>
+          </div>
+          <div class="status-indicator">
+            <img id="remaining-time-Element" src="img/remaining-time.png" alt="" />
+            <div class="status-indicator-value" id="remaining-time-value">999999</div>
+          </div>
+          <div class="status-indicator">
+            <img id="total-count-Element" src="img/total-count.png" alt="" />
+            <div class="status-indicator-value" id="total-count-value">0</div>
+          </div>
+        </div>
+        <!-- Stats Labels -->
+        <div class="stats-labels">
+          <div id="clean-label">Clean:</div>
+          <div id="combo-label">Combo:</div>
+          <div id="misses-label">(Misses)</div>
+          <div id="assist-misses-label">Assist:</div>
+          <div id="answer-misses-label">Answer:</div>
+        </div>
+        <!-- Stats Values -->
+        <div class="stats-values">
+          <div id="clean-value">0</div>
+          <div id="combo-value">0</div>
+          <div id="misses-space"><br /></div>
+          <div id="assist-misses-value">0</div>
+          <div id="answer-misses-value">0</div>
+        </div>
+        <!-- Time Labels -->
+        <div class="time-labels">
+          <div id="total-time-label">Total:</div>
+          <div id="average-time-label">Avg.:</div>
+          <div id="timer-label">Now:</div>
+        </div>
+        <!-- Time Values -->
+        <div class="time-values">
+          <button id="start-button">START</button>
+          <button id="reset-button" hidden>RESET</button>
+          <div id="total-time-value">00.00sec</div>
+          <div id="average-time-value">00.00sec</div>
+          <div id="timer-value">00.00sec</div>
+        </div>
+        <!-- Time History -->
+        <div class="time-history">
+          <div class="time-history-values">00.00sec</div>
+          <div class="time-history-values">00.00sec</div>
+          <div class="time-history-values">00.00sec</div>
+          <div class="time-history-values">00.00sec</div>
+          <div class="time-history-values">00.00sec</div>
+          <div class="time-history-values">00.00sec</div>
+          <div class="time-history-values">00.00sec</div>
+          <div class="time-history-values">00.00sec</div>
+          <div class="time-history-values">00.00sec</div>
+        </div>
+        <!-- Other Games Dialog -->
+        <div id="other-games-dialog" hidden>
+          <button id="game-a-button">A Little Match Girl!</button>
+          <!-- div + img + alink -->
+          <button id="game-b-button">Rout to Einherjar</button>
+          <!-- div + img + alink -->
+          <button id="resume-game-button">Close Dialog</button>
+        </div>
+      </div>
+      <!-- Cards Container -->
+      <div id="cards-container">
+        <!-- Result Indicator -->
+        <div id="result-indicator"></div>
+        <!-- First Row -->
+        <div class="card-row red1">
+          <img class="year-card-previous" src="img/red.png" alt="" />
+          <img class="year-card-previous" src="img/red.png" alt="" />
+          <img class="year-card-previous" src="img/red.png" alt="" />
+          <img class="year-card-previous" src="img/red.png" alt="" />
+          <img class="year-card-previous" src="img/red.png" alt="" />
+          <img class="card-back-previous" src="img/y.png" alt="" />
+          <img class="month-card-previous" src="img/red.png" alt="" />
+          <img class="month-card-previous" src="img/red.png" alt="" />
+          <img class="card-back-previous" src="img/m.png" alt="" />
+          <img class="date-card-previous" src="img/red.png" alt="" />
+          <img class="date-card-previous" src="img/red.png" alt="" />
+          <img class="card-back-previous" src="img/d.png" alt="" />
+          <img class="card-back-previous" src="img/red.png" alt="" />
+          <img class="day-card-previous" src="img/red.png" alt="" />
+          <img class="card-back-previous" src="img/a.png" alt="" />
+        </div>
+        <!-- Second Row -->
+        <div class="card-row red2">
+          <img class="year-card-current" src="img/red.png" alt="" />
+          <img class="year-card-current" src="img/red.png" alt="" />
+          <img class="year-card-current" src="img/red.png" alt="" />
+          <img class="year-card-current" src="img/red.png" alt="" />
+          <img class="year-card-current" src="img/red.png" alt="" />
+          <img class="card-back-current" src="img/y.png" alt="" />
+          <img class="month-card-current" src="img/red.png" alt="" />
+          <img class="month-card-current" src="img/red.png" alt="" />
+          <img class="card-back-current" src="img/m.png" alt="" />
+          <img class="date-card-current" src="img/red.png" alt="" />
+          <img class="date-card-current" src="img/red.png" alt="" />
+          <img class="card-back-current" src="img/d.png" alt="" />
+          <img class="card-back-current" src="img/red.png" alt="" />
+          <img class="day-card-current" src="img/red.png" alt="" />
+          <img class="card-back-current" src="img/a.png" alt="" />
+        </div>
+        <!-- Third Row -->
+        <div class="card-row blue">
+          <div class="group century">
+            <img class="card-back-calculating" src="img/c.png" alt="" />
+            <img class="century-card-calculating" src="img/0.png" alt="" />
+            <img class="card-back-calculating" src="img/c.png" alt="" />
+          </div>
+          <div class="group year">
+            <img class="card-back-calculating" src="img/y.png" alt="" />
+            <img class="year-card-calculating" src="img/0.png" alt="" />
+            <img id="intercalary-card-calculating" src="img/y.png" alt="" />
+          </div>
+          <div class="group month">
+            <img class="card-back-calculating" src="img/m.png" alt="" />
+            <img class="month-card-calculating" src="img/10.png" alt="" />
+            <img class="card-back-calculating" src="img/m.png" alt="" />
+          </div>
+          <div class="group date">
+            <img class="card-back-calculating" src="img/d.png" alt="" />
+            <img class="date-card-calculating" src="img/20.png" alt="" />
+            <img class="card-back-calculating" src="img/d.png" alt="" />
+          </div>
+          <div class="group day">
+            <img class="card-back-calculating" src="img/a.png" alt="" />
+            <img class="day-card-calculating" src="img/40.png" alt="" />
+            <img class="card-back-calculating" src="img/a.png" alt="" />
+          </div>
+        </div>
+        <!-- Fourth Row -->
+        <div class="card-row blue">
+          <div class="group century">
+            <img class="century-card-calculating" src="img/1.png" alt="" />
+            <img class="century-card-calculating" src="img/2.png" alt="" />
+            <img class="century-card-calculating" src="img/3.png" alt="" />
+          </div>
+          <div class="group year">
+            <img class="year-card-calculating" src="img/1.png" alt="" />
+            <img class="year-card-calculating" src="img/2.png" alt="" />
+            <img class="year-card-calculating" src="img/3.png" alt="" />
+          </div>
+          <div class="group month">
+            <img class="month-card-calculating" src="img/11.png" alt="" />
+            <img class="month-card-calculating" src="img/12.png" alt="" />
+            <img class="month-card-calculating" src="img/13.png" alt="" />
+          </div>
+          <div class="group date">
+            <img class="date-card-calculating" src="img/21.png" alt="" />
+            <img class="date-card-calculating" src="img/22.png" alt="" />
+            <img class="date-card-calculating" src="img/23.png" alt="" />
+          </div>
+          <div class="group day">
+            <img class="day-card-calculating" src="img/41.png" alt="" />
+            <img class="day-card-calculating" src="img/42.png" alt="" />
+            <img class="day-card-calculating" src="img/43.png" alt="" />
+          </div>
+        </div>
+        <!-- Fifth Row -->
+        <div class="card-row blue">
+          <div class="group century">
+            <img class="century-card-calculating" src="img/4.png" alt="" />
+            <img class="century-card-calculating" src="img/5.png" alt="" />
+            <img class="century-card-calculating" src="img/6.png" alt="" />
+          </div>
+          <div class="group year">
+            <img class="year-card-calculating" src="img/4.png" alt="" />
+            <img class="year-card-calculating" src="img/5.png" alt="" />
+            <img class="year-card-calculating" src="img/6.png" alt="" />
+          </div>
+          <div class="group month">
+            <img class="month-card-calculating" src="img/14.png" alt="" />
+            <img class="month-card-calculating" src="img/15.png" alt="" />
+            <img class="month-card-calculating" src="img/16.png" alt="" />
+          </div>
+          <div class="group date">
+            <img class="date-card-calculating" src="img/24.png" alt="" />
+            <img class="date-card-calculating" src="img/25.png" alt="" />
+            <img class="date-card-calculating" src="img/26.png" alt="" />
+          </div>
+          <div class="group day">
+            <img class="day-card-calculating" src="img/44.png" alt="" />
+            <img class="day-card-calculating" src="img/45.png" alt="" />
+            <img class="day-card-calculating" src="img/46.png" alt="" />
+          </div>
+        </div>
+        <!-- Extended Row -->
+        <img id="time-is-up" class="day-card-calculating" src="img/dummy.png" alt="" />
+      </div>
+    </div>
+    <!-- External Script -->
+    <script src="silent.js"></script>
+  </body>
+</html>
+<!-- End of HTML -->

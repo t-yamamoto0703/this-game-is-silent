@@ -1,0 +1,419 @@
+@charset "utf-8";
+
+/* body */
+
+body {
+  background-color: #000000ff;
+  color: #ffffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Screen Reader Message */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* game Board */
+
+#game-board {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  height: 100vh;
+  min-height: 600px;
+  max-height: 960px;
+  margin-bottom: 10%;
+}
+
+/* Total Result */
+
+#total-result {
+  position: absolute;
+  background-color: #80808080;
+  color: #00ff00ff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(50px, 8vw, 80px);
+  z-index: 10;
+}
+
+/* Damage Flash Screen */
+
+#damage-screen {
+  position: absolute;
+  background-color: #e0e0e0ff;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+#damage-screen.damage-flash {
+  animation: damage-flash 0.6s ease-out;
+}
+
+@keyframes damage-flash {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#damage-screen.game-end-flash {
+  animation: game-end-flash 9s ease-out;
+}
+
+@keyframes game-end-flash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  97% {
+    opacity: 0.88;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*** flex-grow ***/
+
+.ui-container {
+  flex-grow: 2;
+}
+
+#cards-container {
+  flex-grow: 0.02; /* 0.02 works best */
+}
+
+/* UI Container */
+
+.ui-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  align-items: end;
+  padding: 5% 0px;
+  position: relative;
+  background-image: url("img/is_safe.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.ui-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("img/under_fire.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ui-container.under-fire::after {
+  opacity: 1;
+}
+
+/* Status Resources - Unstyled Section - */
+
+/* UI Controls - Unstyled Section - */
+
+/* Other Games */
+
+#other-games-button {
+  position: relative;
+  background-color: #00ff00;
+  border-style: none;
+  padding: 5px;
+  border-radius: 12px;
+  height: 60px;
+  margin-bottom: 5px;
+  font-size: 20px;
+  text-align: center;
+  top: 0px;
+}
+
+/* Month Adjust Button Container */
+
+.month-adjust-button-label {
+  position: relative;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.month-adjust-button {
+  position: relative;
+  background-color: #00ff00;
+  border-style: none;
+  border-radius: 12px;
+  width: 75%;
+  height: 20px;
+  margin-top: 5px;
+  margin-right: 2px;
+  margin-bottom: 5px;
+  font-size: 12px;
+  text-align: center;
+}
+
+#default-adjust-position {
+  opacity: 0.6;
+}
+
+/* Status Indicator */
+
+.status-indicator {
+  position: relative;
+  width: fit-content;
+}
+
+.status-indicator img {
+  display: block;
+  width: 100%;
+  min-width: 50px;
+  max-width: 120px;
+  height: auto;
+  margin-top: 3%;
+  opacity: 0.75;
+}
+
+.status-indicator-value {
+  position: absolute;
+  color: #ffffffff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(10px, 3vw, 20px);
+  font-weight: bold;
+  pointer-events: none;
+}
+
+/* Stats Labels */
+
+.stats-labels,
+.stats-values,
+.time-labels,
+.time-values,
+.time-history {
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-labels,
+.time-labels,
+.time-history {
+  text-align: right;
+}
+
+/* Stats Values */
+
+.stats-values {
+  margin-left: 12px;
+}
+
+/* Time Labels - Unstyled Section - */
+
+/* Time Values */
+
+#start-button,
+#reset-button {
+  background-color: #00ff00;
+  padding: 4px 0;
+  border-style: none;
+  border-radius: 12px;
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.time-values {
+  text-align: center;
+}
+
+/* Time History */
+
+.time-history {
+  margin-right: 10px;
+}
+
+/* Other Games Dialog */
+
+#other-games-dialog {
+  position: absolute;
+  background-color: #88888888;
+  border-color: #888888ff;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 12px;
+  width: 340px;
+  height: 510px;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  z-index: 1;
+}
+
+#game-a-button,
+#game-b-button {
+  position: relative;
+  color: #ffffffff;
+  border-radius: 12px;
+  min-width: 300px;
+  top: 20px;
+  font-size: 24px;
+  border-style: none;
+}
+
+#game-a-button {
+  background-image: url("img/match.jpg");
+  min-height: 180px;
+  padding-top: 130px;
+}
+
+#game-b-button {
+  background-image: url("img/einherjar.jpg");
+  min-height: 225px;
+  top: 40px;
+  padding-top: 150px;
+  margin-bottom: 10px;
+}
+
+#resume-game-button {
+  position: relative;
+  background-color: #00ff00ff;
+  border-style: none;
+  border-radius: 12px;
+  top: 40px;
+  left: 0px;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Cards Container */
+
+#cards-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Result Indicator */
+
+#result-indicator {
+  position: absolute;
+  background-color: #80808080;
+  color: #00ff00ff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(50px, 8vw, 80px);
+  z-index: 1;
+}
+
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  position: relative;
+}
+
+/* First Row */
+
+.card-row.red1 {
+  margin-bottom: 8px;
+  opacity: 0.4;
+}
+
+/* Second Row */
+
+.card-row.red2 {
+  margin-bottom: 2px;
+}
+
+/* Third Row */
+/* Fourth Row */
+/* Fifth Row */
+
+.card-row.blue {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 2px;
+}
+
+.card-row.blue .group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card-row img {
+  width: 100%;
+  height: auto;
+}
+
+/* Extended Row */
+
+#time-is-up {
+  height: 0px;
+}
+
+/* External Script -Unstyled Section- */
+
+/*** @media ***/
+
+@media (max-width: 480px) {
+  #other-games-dialog {
+    top: 15%;
+  }
+  #other-games-button {
+    height: auto;
+    font-size: 12px;
+  }
+  .month-adjust-button-label {
+    font-size: 12px;
+  }
+  .status-indicator img {
+    max-width: 50px;
+  }
+  .status-indicator-value {
+    font-size: clamp(8px, 3vw, 18px);
+  }
+  #start-button,
+  #reset-button {
+    font-size: clamp(8px, 3vw, 18px);
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    align-items: flex-start;
+  }
+  .time-values button {
+    font-size: 12px;
+  }
+}
+
+/*** End of CSS ***/
