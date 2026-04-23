@@ -4,13 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title translate="no">This game is silent.</title>
-    <link href="silent.css" rel="stylesheet" />
+    <link href="./silent.css" rel="stylesheet" />
   </head>
   <body>
     <!-- Screen Reader Message -->
     <p class="sr-only">This game is not compatible with screen readers.</p>
     <!-- game Board -->
-    <div id="game-board" aria-hidden>
+    <div id="game-board" aria-hidden="true">
+      <!-- View Source [Structural compromise: Layout placement] -->
+      <a
+        class="view-source"
+        href="https://github.com/t-yamamoto0703/this-game-is-silent.git"
+        target="_blank"
+        rel="noopener noreferrer"
+        tabindex="-1"
+        >View Source on GitHub (opens in a new tab)
+      </a>
+      <!-- Modal Overlay -->
+      <div id="modal-overlay" hidden="true"></div>
       <!-- Total Result -->
       <div id="total-result"></div>
       <!-- Damage Flash Screen -->
@@ -23,7 +34,7 @@
           <div class="ui-controls">
             <!-- Other Games -->
             <div class="other-games">
-              <button id="other-games-button">
+              <button id="other-games-button" tabindex="-1">
                 Other<br />
                 Games
               </button>
@@ -31,23 +42,41 @@
             <!-- Month Adjust Button Container -->
             <div id="month-adjust-button-container">
               <div class="month-adjust-button-label">Month<br />Adjust</div>
-              <button class="month-adjust-button">+3</button>
-              <button class="month-adjust-button">+2</button>
-              <button class="month-adjust-button">+1</button>
-              <button class="month-adjust-button" id="default-adjust-position">0</button>
-              <button class="month-adjust-button">-1</button>
-              <button class="month-adjust-button">-2</button>
-              <button class="month-adjust-button">-3</button>
+              <button class="month-adjust-button" tabindex="-1">+3</button>
+              <button class="month-adjust-button" tabindex="-1">+2</button>
+              <button class="month-adjust-button" tabindex="-1">+1</button>
+              <button
+                class="month-adjust-button"
+                tabindex="-1"
+                id="default-adjust-position"
+              >
+                0
+              </button>
+              <button class="month-adjust-button" tabindex="-1">-1</button>
+              <button class="month-adjust-button" tabindex="-1">-2</button>
+              <button class="month-adjust-button" tabindex="-1">-3</button>
             </div>
           </div>
           <!-- Status Indicator -->
           <div class="status-indicator">
-            <img id="remaining-questions-Element" src="img/remaining-questions.png" alt="" />
-            <div class="status-indicator-value" id="remaining-questions-value">366</div>
+            <img
+              id="remaining-questions-Element"
+              src="img/remaining-questions.png"
+              alt=""
+            />
+            <div class="status-indicator-value" id="remaining-questions-value">
+              366
+            </div>
           </div>
           <div class="status-indicator">
-            <img id="remaining-time-Element" src="img/remaining-time.png" alt="" />
-            <div class="status-indicator-value" id="remaining-time-value">999999</div>
+            <img
+              id="remaining-time-Element"
+              src="img/remaining-time.png"
+              alt=""
+            />
+            <div class="status-indicator-value" id="remaining-time-value">
+              999999
+            </div>
           </div>
           <div class="status-indicator">
             <img id="total-count-Element" src="img/total-count.png" alt="" />
@@ -78,8 +107,8 @@
         </div>
         <!-- Time Values -->
         <div class="time-values">
-          <button id="start-button">START</button>
-          <button id="reset-button" hidden>RESET</button>
+          <button id="start-button" tabindex="-1">START</button>
+          <button id="reset-button" hidden="true">RESET</button>
           <div id="total-time-value">00.00sec</div>
           <div id="average-time-value">00.00sec</div>
           <div id="timer-value">00.00sec</div>
@@ -97,11 +126,25 @@
           <div class="time-history-values">00.00sec</div>
         </div>
         <!-- Other Games Dialog -->
-        <div id="other-games-dialog" hidden>
-          <button id="game-a-button">A Little Match Girl!</button>
-          <!-- div + img + alink -->
-          <button id="game-b-button">Rout to Einherjar</button>
-          <!-- div + img + alink -->
+        <div id="other-games-dialog" hidden="true">
+          <button id="game-a-button">
+            <a
+              href="https://t-yamamoto0703.github.io/a-little-match-girl/"
+              target="_self"
+              rel="noopener noreferrer"
+            >
+              A Little Match Girl!
+            </a>
+          </button>
+          <button id="game-b-button">
+            <a
+              href="https://t-yamamoto0703.github.io/y-a-g-n-i/"
+              target="_self"
+              rel="noopener noreferrer"
+            >
+              Y-A-G-N-I
+            </a>
+          </button>
           <button id="resume-game-button">Close Dialog</button>
         </div>
       </div>
@@ -230,11 +273,16 @@
           </div>
         </div>
         <!-- Extended Row -->
-        <img id="time-is-up" class="day-card-calculating" src="img/dummy.png" alt="" />
+        <img
+          id="time-is-up"
+          class="day-card-calculating"
+          src="img/dummy.png"
+          alt=""
+        />
       </div>
     </div>
     <!-- External Script -->
-    <script src="silent.js"></script>
+    <script src="./silent.js"></script>
   </body>
 </html>
 <!-- End of HTML -->
