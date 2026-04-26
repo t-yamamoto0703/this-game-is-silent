@@ -1,84 +1,160 @@
 # This-game-is-silent
 
-## Overview
-This is a browser-based game themed around calendar calculation.  
-- This project was created for the purpose of training basic programming skills,
-logical thinking, and making technical understanding visible.
-- [This-game-is-silent.](https://t-yamamoto0703.github.io/This-game-is-silent/)
-
-## Day‑of‑Week Calculation Algorithm
-- The calendar (weekday) calculation method used in this game is a coded reconstruction of the developer’s actual mental process: taking the four pieces of information—century, year, month, and date—in whatever order they are perceived, combining them intuitively, and identifying the weekday position on the calendar.
-- In the developer’s mind, each step is handled less like a “calculation” and more like a hash‑table‑style lookup. For the purpose of implementation, these intuitive processes were deliberately decomposed into logical “computations” and rebuilt as code.
-
-## Consistency
-- For validating weekday correctness, a standard formula based on the Julian Day is used.  
-- This calculation is independent of the game’s internal logic and serves as a verification reference.
-
-## Role of the Auxiliary Cards
-- The cards numerically represent rightward movement on the calendar (weekday shifts).
-- Their total value is designed to match the weekday index (Sunday === 0, Monday === 1, ...).
-
-## Specification‑Level Adjustment
-- Only for January and February of leap years, a “−1” adjustment is applied to maintain consistency in the calculation.
-
-Supported Environments
-The game has been tested only in the following minimal environments:
-- Lubuntu 24.04.4 LTS / Chromium
-- Windows 11 / Microsoft Edge, Firefox
-Console output for debugging is left enabled.
-
-Notes
-- Using DevTools (F12), you can inspect the internal calculation steps and the evaluation results for each question in real time.
-- The weekday calculation method used in this game differs from existing algorithms such as Doomsday.
-- Clearing the game may feel less like understanding a formula and more like quickly and accurately turning an internal “virtual dial”.
-- If possible, process the four pieces of information—century, year, month, date—smoothly, as if playing the arpeggio G–C–E–G.
-- Only for January and February of leap years, a “−1” adjustment is applied (by design).
-- If the method does not feel intuitive, you may use the Month Adjust button or ignore the auxiliary card values and answer directly.
-- Using the auxiliary cards is not required.
-- The Previous Cards panel intentionally remains open even when pressing the Other Games button, so you can use it for checking the previous question or taking a short break.
-- For details of the algorithm, please refer to the source code.
+> **Note**  
+> This README was drafted using **Microsoft Copilot**, intentionally instructed to write in a  
+> **“Google‑engineer‑style” technical tone** as an experiment in cross‑style documentation.  
+> The content reflects the project accurately, while the writing style is part of the experiment.
 
 ---
 
-# This-game-is-silent（日本語）
+# English
 
-## 概要
-本作品はカレンダー計算をテーマにしたブラウザゲームです。  
-- 本作品は基礎的なプログラミングスキルおよび論理的思考の訓練、ならびに技術的理解の可視化を目的として作成されています。
-- [This-game-is-silent.](https://t-yamamoto0703.github.io/This-game-is-silent/)
+## Overview
 
-## 曜日計算アルゴリズム
-- 本ゲームのカレンダー計算（曜日算出）方式は開発者の脳内で実際に行われている「世紀・年・月・日の4情報を順不同で見たままに処理・合成してカレンダー上の曜日位置を特定する」という感覚的なプロセスをコードに落とし込んだものです。
-- 脳内では計算と言うよりもハッシュテーブル的な検索に近い処理で済んでいる各プロセスを、あえて論理的な『計算』へと分解し、再構築しました。
-- 結果的に実際の脳内で行われている処理とコード上での処理との間にかなりの距離があいてしまっていることを御理解いただければさいわいです。
+This project is a browser-based game that computes the day of the week for a given date.  
+It provides a minimal, interactive environment for examining how intuitive mental heuristics can be formalized into deterministic computational logic.
 
-## 整合性
-- 曜日の正誤判定にはユリウス日を用いた標準的な数式を採用しています。
-- これは本ゲームの内部ロジックとは独立しており検証用の基準として機能します。
+## Live Demo
 
-## 補助カードの役割
-- カレンダー上での日付の右移動（曜日移動）を数値化したものです。
-- 合計値が曜日のインデックス（日曜 === 0,月曜 === 1...）と一致するように設計されております。
+- https://t-yamamoto0703.github.io/This-game-is-silent/
 
-## 仕様上の補正
-- うるう年の1月・2月のみ、計算の整合性を保つために「−1」の補正を加える仕様としております。
+## Development Goals
 
-## 動作環境
-以下の環境でのみ簡易的な動作確認を行っています。
+The project was created as part of a personal learning workflow with the following objectives:
+
+- Strengthen core programming fundamentals
+- Practice structured reasoning and decomposition
+- Make the development process observable and reviewable
+- Evaluate the practical use of generative AI in iterative development
+
+## Algorithm Overview
+
+The day-of-week algorithm is derived from the developer’s own mental strategy for identifying weekday positions.  
+The approach combines four inputs — **century, year, month, and date** — in a flexible, non-sequential manner, reflecting an intuitive rather than procedural approach.
+
+Implementation details:
+
+- Intuitive steps were decomposed into explicit, ordered operations
+- The resulting algorithm is a **structured approximation** of the original mental process
+- The design prioritizes transparency and reproducibility over replicating the exact cognitive workflow
+
+## Verification Model
+
+- Correctness is verified using a standard Julian Day–based formula
+- This verification logic is independent of the internal algorithm and serves as a stable reference baseline
+
+## Auxiliary Cards
+
+Auxiliary cards represent the forward movement of dates on a calendar — effectively, the weekday offset.
+
+Key properties:
+
+- The sum of card values aligns with the computed weekday index
+- Cards are optional; users may rely on the **Month Adjust** control or answer directly
+- For January and February in leap years, a **−1 adjustment** is applied to maintain consistency
+
+## Tested Environments
+
+The project has been validated in the following environments:
 
 - Lubuntu 24.04.4 LTS / Chromium
 - Windows 11 / Microsoft Edge, Firefox
 
-デバッグ用のコンソール出力を残していますので、必要に応じてご利用ください。
+Debug console output (F12) is intentionally left enabled.
 
-### 補足
-- DevTools（F12）を使用することで内部の計算過程や出題ごとの判定結果をリアルタイムで確認できます。
-- 本ゲームの曜日算出方式はDoomsday等の既存アルゴリズムとは異なります。
-- クリアに必要なのは計算式の理解ではなく、より速く、より正確に脳内の仮想ダイヤルを回す感覚に近いかもしれません。
-- 可能であればG–C–E–Gのアルペジオを弾くように、世紀・年・月・日の4つの情報を流れるように処理してください。
-- うるう年の1月・2月のみ、計算の整合性を保つために「−1」の補正が加わります（仕様）。
-- 直感に合わない場合はMonth Adjustボタンを使用するか、補助カードの数値を無視して直接解答してください。
-- 補助カードの使用は必須ではありません。
-- Other Gamesボタンを押してもPrevious Cardsが閉じないのは前問の検算や小休止に活用いただくための意図的な設計です。
-- アルゴリズムの詳細に興味がある方はコードをご参照ください。
-  
+## Assets and Licensing
+
+- Background and linked images were generated using AI and modified by the developer
+- Card images were created by the developer using assets from the **RPG Maker** series  
+  In accordance with the license terms, the original assets are not redistributed
+- Source code is released under the MIT License  
+  Redistribution or secondary use of the card images is not permitted
+
+## Additional Notes
+
+- The algorithm used in this project is **not** based on the Doomsday method  
+  Intermediate values therefore differ from Doomsday-style calculations
+- The **Other Games** button intentionally keeps **Previous Cards** open to support review and pacing
+- For implementation details, refer to the source code
+
+---
+
+> **注記**  
+> 本 README は、**Microsoft Copilot** に対して  
+> **「Google のエンジニア文体で書いてほしい」** と指示して作成したものです。  
+> 文体は実験的なものですが、内容は本プロジェクトを正確に反映しています。
+
+# 日本語
+
+## 概要
+
+本作品は、指定した日付の曜日を算出するブラウザゲームです。  
+直感的な思考手順を、決定的な計算ロジックへと形式化する過程を、軽量で操作しやすい環境として提供します。
+
+## 公開ページ
+
+- https://t-yamamoto0703.github.io/This-game-is-silent/
+
+## 開発目的
+
+本作品は、個人的な学習ワークフローの一環として開発したもので、以下を目的としています。
+
+- 基礎的なプログラミングスキルの強化
+- 構造化された思考と分解の練習
+- 開発プロセスの可視化と検証
+- 生成AIを活用した反復的開発手法の評価
+
+## アルゴリズム概要
+
+本ゲームの曜日算出アルゴリズムは、開発者自身が行っている  
+「曜日を特定するための直感的な思考手順」を基にしています。  
+**世紀・年・月・日** の4要素を、手順に縛られず柔軟に組み合わせるという、  
+計算というより“感覚的な判断”に近いアプローチをモデル化しています。
+
+実装にあたっては以下の方針を採用しています。
+
+- 直感的な処理を、明示的で順序立った計算ステップへと分解
+- 得られたアルゴリズムは、脳内処理の直接的な再現ではなく、  
+  **構造化された近似モデル** として設計
+- 認知プロセスの模倣よりも、透明性と再現性を優先
+
+## 整合性モデル
+
+- 曜日の正誤判定には、ユリウス日を用いた標準的な数式を採用しています
+- この検証ロジックは内部アルゴリズムとは独立しており、基準値として機能します
+
+## 補助カード
+
+補助カードは、カレンダー上で日付が右方向へ進む量、  
+すなわち曜日のオフセットを数値化したものです。
+
+主な仕様は以下の通りです。
+
+- カードの合計値が算出される曜日インデックスと一致するよう設計
+- 補助カードは任意で、**Month Adjust** ボタンや直接入力での解答も可能
+- うるう年の1月・2月のみ、整合性維持のため **−1 の補正** を適用
+
+## 動作確認環境
+
+以下の環境で動作検証を行っています。
+
+- Lubuntu 24.04.4 LTS / Chromium
+- Windows 11 / Microsoft Edge, Firefox
+
+デバッグ用のコンソール出力（F12）は意図的に残しています。
+
+## アセットとライセンス
+
+- 背景画像およびリンク先画像は、AI が生成し開発者が加工したものです
+- カード画像は、**RPG Maker** シリーズの素材を基に開発者が作成したものです  
+  ライセンス条件に従い、元素材の再配布は行っていません
+- ソースコードは MIT ライセンスで公開しています  
+  ただしカード画像の再配布・二次利用は許可していません
+
+## 補足
+
+- 本作品のアルゴリズムは **Doomsday 方式ではありません**  
+  そのため途中計算値も Doomsday 方式とは異なります
+- **Other Games** ボタンを押しても **Previous Cards** が閉じないのは、  
+  検算や小休止に利用できるようにするための仕様です
+- アルゴリズムの詳細はソースコードをご参照ください
