@@ -14,13 +14,14 @@
       assistive technologies. You may leave this page at any time.
     </p>
     <!-- game Board -->
-    <div id="game-board">
+    <div id="game-board" aria-hidden="true">
       <!-- View Source [Structural compromise: Layout placement] -->
       <a
         class="view-source"
         href="https://github.com/t-yamamoto0703/this-game-is-silent.git"
         target="_blank"
         rel="noopener noreferrer"
+        tabindex="-1"
         >View Source on GitHub (opens in a new tab)
       </a>
       <!-- Modal Overlay -->
@@ -37,7 +38,7 @@
           <div class="ui-controls">
             <!-- Other Games -->
             <div class="other-games">
-              <button id="other-games-button">
+              <button id="other-games-button" tabindex="-1">
                 Other<br />
                 Games
               </button>
@@ -45,13 +46,13 @@
             <!-- Month Adjust Button Container -->
             <div id="month-adjust-button-container">
               <div class="month-adjust-button-label">Month<br />Adjust</div>
-              <button class="month-adjust-button">+3</button>
-              <button class="month-adjust-button">+2</button>
-              <button class="month-adjust-button">+1</button>
-              <button class="month-adjust-button" id="default-adjust-position">0</button>
-              <button class="month-adjust-button">-1</button>
-              <button class="month-adjust-button">-2</button>
-              <button class="month-adjust-button">-3</button>
+              <button class="month-adjust-button" tabindex="-1">+3</button>
+              <button class="month-adjust-button" tabindex="-1">+2</button>
+              <button class="month-adjust-button" tabindex="-1">+1</button>
+              <button class="month-adjust-button" tabindex="-1" id="default-adjust-position">0</button>
+              <button class="month-adjust-button" tabindex="-1">-1</button>
+              <button class="month-adjust-button" tabindex="-1">-2</button>
+              <button class="month-adjust-button" tabindex="-1">-3</button>
             </div>
           </div>
           <!-- Status Indicator -->
@@ -92,7 +93,7 @@
         </div>
         <!-- Time Values -->
         <div class="time-values">
-          <button id="start-button">START</button>
+          <button id="start-button" tabindex="-1">START</button>
           <button id="reset-button" hidden="true">RESET</button>
           <div id="total-time-value">00.00sec</div>
           <div id="average-time-value">00.00sec</div>
