@@ -11,8 +11,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-family:
-    "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo";
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo";
   height: 100vh;
   margin: 0;
 }
@@ -201,6 +200,7 @@ body {
   font-size: 20px;
   text-align: center;
   top: 0px;
+  z-index: 10;
 }
 
 /* =========================
@@ -211,6 +211,7 @@ body {
   position: relative;
   margin-bottom: 5px;
   font-size: 20px;
+  z-index: 10;
 }
 
 .month-adjust-button {
@@ -225,6 +226,7 @@ body {
   margin-bottom: 5px;
   font-size: 12px;
   text-align: center;
+  z-index: 10;
 }
 
 #default-adjust-position {
@@ -238,6 +240,7 @@ body {
 .status-indicator {
   position: relative;
   width: fit-content;
+  z-index: 10;
 }
 
 .status-indicator img {
@@ -272,6 +275,7 @@ body {
 .time-history {
   display: flex;
   flex-direction: column;
+  z-index: 10;
 }
 
 .stats-labels,
@@ -376,7 +380,7 @@ body {
   font-size: 24px;
 }
 
-a {
+#other-games-dialog a {
   color: #ffffff;
 }
 
@@ -414,7 +418,11 @@ a {
    First Row:
    ========================= */
 
-.card-row.red1 {
+.year-card-previous,
+.month-card-previous,
+.date-card-previous,
+.day-card-previous,
+.card-back-previous {
   margin-bottom: 8px;
   opacity: 0.4;
 }

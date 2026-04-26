@@ -48,18 +48,18 @@
     CALCULATION_CARDS_LENGTH: 7,
   };
 
-  const IMG_PATH_SETTINGS = Object.freeze({
+  const IMG_PATH_SETTINGS = {
     IMG_DIRECTORY_PATH: "img/",
     BG_IMG_NORMAL: "is_safe",
     BG_IMG_DAMAGED: "under_fire",
     BG_IMG_EXT: ".jpg",
     CARD_IMG_EXT: ".png",
-  });
+  };
 
-  const CARD_PATH_SETTINGS = Object.freeze({
+  const CARD_PATH_SETTINGS = {
     RED_CARD: `${IMG_PATH_SETTINGS.IMG_DIRECTORY_PATH}red${IMG_PATH_SETTINGS.CARD_IMG_EXT}`,
     BLUE_CARD: `${IMG_PATH_SETTINGS.IMG_DIRECTORY_PATH}blue${IMG_PATH_SETTINGS.CARD_IMG_EXT}`,
-  });
+  };
 
   /***********************************************
     Get Card Path
@@ -73,21 +73,22 @@
     Cards container elements
   ***********************************************/
 
-  const Cards = Object.freeze({
-    current: Object.freeze({
+  const Cards = {
+    current: {
       year: document.querySelectorAll(".year-card-current"),
       month: document.querySelectorAll(".month-card-current"),
       date: document.querySelectorAll(".date-card-current"),
       day: document.querySelector(".day-card-current"),
       back: document.querySelectorAll(".card-back-current"),
-    }),
-    previous: Object.freeze({
+    },
+    previous: {
       year: document.querySelectorAll(".year-card-previous"),
       month: document.querySelectorAll(".month-card-previous"),
       date: document.querySelectorAll(".date-card-previous"),
       day: document.querySelector(".day-card-previous"),
-    }),
-    calculating: Object.freeze({
+      back: document.querySelectorAll(".card-back-previous"),
+    },
+    calculating: {
       intercalary: document.querySelector("#intercalary-card-calculating"),
       century: document.querySelectorAll(".century-card-calculating"),
       year: document.querySelectorAll(".year-card-calculating"),
@@ -95,19 +96,19 @@
       date: document.querySelectorAll(".date-card-calculating"),
       day: document.querySelectorAll(".day-card-calculating"),
       back: document.querySelectorAll(".card-back-calculating"),
-    }),
-  });
+    },
+  };
 
   /***********************************************
     Control Cards Open
   ***********************************************/
 
-  const CARD_OFFSET = Object.freeze({
+  const CARD_OFFSET = {
     SPADE_CARD: 0, // 年
     CLOVER_CARD: 10, // 月
     DIAMOND_CARD: 20, // 日付
     HEART_WEEKDAY_CARD: 40, // 曜日
-  });
+  };
 
   // うるう年の時はうるう年カードを開く（月を問わない
   const openIntercalaryCard = () => {
@@ -241,11 +242,11 @@
     Control Opacity
   ***********************************************/
 
-  const OPACITY = Object.freeze({
+  const OPACITY = {
     FULL: 1,
     MID: 0.8,
     DIM: 0.6,
-  });
+  };
 
   const setOpacityAllCards = (value) => {
     const groups = [
@@ -280,13 +281,32 @@
     setOpacityAllCards(OPACITY.FULL);
   };
 
+  const setOpacityPreviousCards = (value) => {
+    const groups = [Cards.previous.year, Cards.previous.month, Cards.previous.date, Cards.previous.back];
+    for (const group of groups) {
+      if (!group) continue;
+      for (const el of group) {
+        el.style.opacity = value;
+      }
+    }
+    Cards.previous.day.style.opacity = value;
+  };
+
+  const transparentPreviousCards = () => {
+    setOpacityPreviousCards(OPACITY.DIM);
+  };
+
+  const resetOpacityPreviousCards = () => {
+    setOpacityPreviousCards(OPACITY.FULL);
+  };
+
   /***********************************************
     UI Container Elements
   ***********************************************/
 
-  const UI = Object.freeze({
-    container: Object.freeze(document.querySelector(".ui-container")),
-    buttons: Object.freeze({
+  const UI = {
+    container: document.querySelector(".ui-container"),
+    buttons: {
       otherGames: document.querySelector("#other-games-button"),
       gameA: document.querySelector("#game-a-button"),
       gameB: document.querySelector("#game-b-button"),
@@ -294,8 +314,8 @@
       start: document.querySelector("#start-button"),
       reset: document.querySelector("#reset-button"),
       monthAdjust: document.querySelectorAll(".month-adjust-button"),
-    }),
-    status: Object.freeze({
+    },
+    status: {
       resources: document.querySelector("#status-resources"),
       remainingQuestions: document.querySelector("#remaining-questions-value"),
       totalCount: document.querySelector("#total-count-value"),
@@ -308,12 +328,12 @@
       averageTime: document.querySelector("#average-time-value"),
       timer: document.querySelector("#timer-value"),
       timeHistory: document.querySelectorAll(".time-history-values"),
-    }),
-    result: Object.freeze({
+    },
+    result: {
       indicator: document.querySelector("#result-indicator"),
       totalResult: document.querySelector("#total-result"),
-    }),
-  });
+    },
+  };
 
   /***********************************************
     Draw UI Values
@@ -333,14 +353,14 @@
     Variables
   ***********************************************/
 
-  const INITIAL_GAME_STATE = Object.freeze({
+  const INITIAL_GAME_STATE = {
     pause: true,
     nonstop: true,
     clean: true,
     win: false,
     lose: false,
     daySelected: false,
-  });
+  };
 
   let gameState = structuredClone(INITIAL_GAME_STATE);
 
@@ -348,17 +368,17 @@
     gameState = structuredClone(INITIAL_GAME_STATE);
   };
 
-  const INITIAL_HUD_STATE = Object.freeze({
+  const INITIAL_HUD_STATE = {
     remainingTime: DEFAULT_VALUE_SETTINGS.REMAINING_TIME_MAX,
     remainingQuestions: DEFAULT_VALUE_SETTINGS.NUMBER_OF_QUESTION,
     totalCount: 0,
     combo: 0,
     clean: 0,
-    misses: Object.freeze({
+    misses: {
       assist: 0,
       answer: 0,
-    }),
-  });
+    },
+  };
 
   let hudState = structuredClone(INITIAL_HUD_STATE);
 
@@ -366,13 +386,13 @@
     hudState = structuredClone(INITIAL_HUD_STATE);
   };
 
-  const INITIAL_CALENDAR_STATE = Object.freeze({
+  const INITIAL_CALENDAR_STATE = {
     intercalary: false,
     centuryData: null,
     yearData: "", // 各配列の要素が1桁分の数字なので一度文字列型に結合して取る
     monthData: null, // 1〜12の乱数（0〜11ではない）
     dateData: null, // 日付用の乱数
-  });
+  };
 
   let calendarState = structuredClone(INITIAL_CALENDAR_STATE);
 
@@ -380,13 +400,13 @@
     calendarState = structuredClone(INITIAL_CALENDAR_STATE);
   };
 
-  const INITIAL_QUESTION_STATE = Object.freeze({
+  const INITIAL_QUESTION_STATE = {
     questionSequence: [], // 出題される日付の配列
     questionIndex: 0, // 出題中の配列要素
     currentQuestionDay: null, // 現在出題されている日付（3/1起点 1〜366）
     year00Questions: [], // 00年問題を強制出題する日付の配列
     year00Index: 0, // 00年問題が強制出題されると1進む
-  });
+  };
 
   let questionState = structuredClone(INITIAL_QUESTION_STATE);
 
@@ -394,7 +414,7 @@
     questionState = structuredClone(INITIAL_QUESTION_STATE);
   };
 
-  const INITIAL_ANSWER_STATE = Object.freeze({
+  const INITIAL_ANSWER_STATE = {
     intercalary: 0,
     century: null,
     year: 0,
@@ -402,9 +422,9 @@
     date: null,
     day: null,
     intercalaryDisplay: null,
-    WEEKDAY_LABELS: Object.freeze(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "\nTime is up"]),
+    WEEKDAY_LABELS: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "\nTime is up"],
     selectedAnswer: "Not Selected.",
-  });
+  };
 
   let Answer = structuredClone(INITIAL_ANSWER_STATE);
 
@@ -412,11 +432,11 @@
     Answer = structuredClone(INITIAL_ANSWER_STATE);
   };
 
-  const INITIAL_MARKING_STATE = Object.freeze({
+  const INITIAL_MARKING_STATE = {
     correct: false,
     incorrect: false,
     timeIsUp: false,
-  });
+  };
 
   let markingState = structuredClone(INITIAL_MARKING_STATE);
 
@@ -425,14 +445,14 @@
   };
 
   // trueが入っている要素は使用済
-  const INITIAL_USEDCARDS_STATE = Object.freeze({
+  const INITIAL_USEDCARDS_STATE = {
     intercalary: false,
     century: [],
     year: [],
     month: [],
     date: [],
     day: [],
-  });
+  };
 
   let usedCards = structuredClone(INITIAL_USEDCARDS_STATE);
 
@@ -440,7 +460,7 @@
     usedCards = structuredClone(INITIAL_USEDCARDS_STATE);
   };
 
-  // まとめてリセットする必要がない（してもよい） そのまま使うのでfreezeしない
+  // まとめてリセットする必要がない（してもよい）
   const digitsForCards = {
     year: [],
     month: [],
@@ -451,17 +471,17 @@
     Timer
   ***********************************************/
 
-  const INITIAL_TIMER_STATE = Object.freeze({
+  const INITIAL_TIMER_STATE = {
     countMilliSec: 0,
     intervalId: null,
     totalTime: 0,
     averageTime: 0,
-    display: Object.freeze({
+    display: {
       sec: "00",
       milliSec: "00",
       text: "00.00sec",
-    }),
-  });
+    },
+  };
 
   let timerState = structuredClone(INITIAL_TIMER_STATE);
 
@@ -576,7 +596,7 @@
     btn.onclick = () => setAdjuster(index);
   });
 
-  const MONTH_ADJUST_TABLE = Object.freeze([3, 2, 1, 0, 6, 5, 4]);
+  const MONTH_ADJUST_TABLE = [3, 2, 1, 0, 6, 5, 4];
 
   const setAdjuster = (index) => {
     monthAdjust.monthAdjustValue = MONTH_ADJUST_TABLE[index];
@@ -698,7 +718,7 @@
   };
 
   /***********************************************
-    Questions Section 
+    Questions Section
   ************************************************/
 
   const shuffleArray = (array) => {
@@ -993,13 +1013,13 @@
     Regions
   ***********************************************/
 
-  const regions = Object.freeze({
+  const regions = {
     gameBoard: document.querySelector("#game-board"),
     modalOverlay: document.querySelector("#modal-overlay"),
     damageScreen: document.querySelector("#damage-screen"),
     uiContainer: document.querySelector(".ui-container"),
     otherGamesDialog: document.querySelector("#other-games-dialog"),
-  });
+  };
 
   /***********************************************
     Selection Control
@@ -1294,6 +1314,7 @@
   ************************/
 
   const openOtherGamesDialog = () => {
+    resetOpacityPreviousCards();
     regions.otherGamesDialog.hidden = false;
     regions.modalOverlay.hidden = false;
     UI.buttons.start.inert = true;
@@ -1321,6 +1342,7 @@
       regions.otherGamesDialog.hidden = true;
       UI.buttons.reset.inert = false;
       UI.buttons.start.inert = false;
+      setOpacityPreviousCards();
     };
   };
 })();
