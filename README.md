@@ -62,6 +62,14 @@ The project has been validated in the following environments:
 
 Debug console output (F12) is intentionally left enabled.
 
+## Display Notes
+Depending on your system configuration, the game’s layout may not fit entirely
+within the visible area when Windows display scaling or browser zoom is set
+above 100%.
+
+This behavior is environment‑dependent. Adjusting the zoom level or display
+scaling may improve the overall playability.
+
 ## Assets and Licensing
 
 - Background and linked images were generated using AI and modified by the developer
@@ -142,6 +150,13 @@ Debug console output (F12) is intentionally left enabled.
 - Windows 11 / Microsoft Edge, Firefox
 
 デバッグ用のコンソール出力（F12）は意図的に残しています。
+
+## 画面表示について
+Windows の表示スケールやブラウザの拡大率が 100% を超えている場合、
+画面全体が表示領域に収まらないことがあります。
+
+この挙動は利用環境に依存します。必要に応じて拡大率を調整すると、
+表示が安定し、操作しやすくなる場合があります。
 
 ## アセットとライセンス
 
