@@ -63,6 +63,7 @@ The project has been validated in the following environments:
 Debug console output (F12) is intentionally left enabled.
 
 ## Display Notes
+
 Depending on your system configuration, the game’s layout may not fit entirely
 within the visible area when Windows display scaling or browser zoom is set
 above 100%.
@@ -152,6 +153,7 @@ scaling may improve the overall playability.
 デバッグ用のコンソール出力（F12）は意図的に残しています。
 
 ## 画面表示について
+
 Windows の表示スケールやブラウザの拡大率が 100% を超えている場合、
 画面全体が表示領域に収まらないことがあります。
 
