@@ -67,7 +67,7 @@ Depending on your system configuration, the game’s layout may not fit entirely
 within the visible area when Windows display scaling or browser zoom is set
 above 100%.
 
-This behavior is environment‑dependent. Adjusting the zoom level or display
+- This behavior is environment‑dependent. Adjusting the zoom level or display
 scaling may improve the overall playability.
 
 ## Assets and Licensing
@@ -155,7 +155,7 @@ scaling may improve the overall playability.
 Windows の表示スケールやブラウザの拡大率が 100% を超えている場合、
 画面全体が表示領域に収まらないことがあります。
 
-この挙動は利用環境に依存します。必要に応じて拡大率を調整すると、
+- この挙動は利用環境に依存します。必要に応じて拡大率を調整すると、
 表示が安定し、操作しやすくなる場合があります。
 
 ## アセットとライセンス
