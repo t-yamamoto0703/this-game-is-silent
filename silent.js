@@ -1342,7 +1342,7 @@
       regions.otherGamesDialog.hidden = true;
       UI.buttons.reset.inert = false;
       UI.buttons.start.inert = false;
-      setOpacityPreviousCards();
+      transparentPreviousCards();
     };
   };
 })();
