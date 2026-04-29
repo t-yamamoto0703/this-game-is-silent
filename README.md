@@ -16,7 +16,7 @@ It provides a minimal, interactive environment for examining how intuitive menta
 
 ## Live Demo
 
-- https://t-yamamoto0703.github.io/This-game-is-silent/
+- https://t-yamamoto0703.github.io/this-game-is-silent/
 
 ## Development Goals
 
