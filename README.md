@@ -102,7 +102,7 @@ scaling may improve the overall playability.
 
 ## 公開ページ
 
-- https://t-yamamoto0703.github.io/This-game-is-silent/
+- https://t-yamamoto0703.github.io/this-game-is-silent/
 
 ## 開発目的
 
